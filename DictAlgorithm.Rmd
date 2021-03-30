@@ -1,0 +1,162 @@
+---
+title: "Dictionary Algorithm"
+output: html_notebook
+author: "Monaesh Siva Kumar"
+---
+
+
+```{r package-installation}
+#
+# Run this chunk to install packages.
+# Only needs to be done once.
+#
+install.packages("readr")
+install.packages("quanteda")
+install.packages("tm")
+install.packages("stringr")
+```
+
+
+```{r Algorithms}
+#
+# Run this chunk to run the algorithm
+#
+
+
+# Input, dictionary, and output files names are provided here. 
+# If any changes are made to the file names, they can be altered here without affecting the code
+input_file <- "BloodCultureClinHxDataset.csv"
+dict_file <- "ClinHxDictionary.csv"
+output_file <- 'ModelOutput.csv'
+
+
+library(readr)
+library(quanteda)
+library(tm)
+library(stringr)
+
+
+BloodCult<- read_csv(input_file)
+CleanedClinHx <- trimws(removeNumbers(removePunctuation(BloodCult$ClinHx)))
+
+ClinHxDictionary <- read_csv(dict_file)
+ClinHxDictionary$Group <- tolower(trimws(ClinHxDictionary$Group))
+ClinHxDictionary$ContainsorMatch <- tolower((trimws(ClinHxDictionary$ContainsorMatch)))
+NumGroups <- as.integer(length(unique(tolower(trimws(ClinHxDictionary$Group)))))
+Groups <- unique(ClinHxDictionary$Group)
+
+Dict_Mat <- matrix(nrow = nrow(BloodCult), ncol = NumGroups)
+
+
+
+#
+# 'Contains' Dictionary
+#
+
+Dic_List <- list()
+for (i in 1:NumGroups){
+  temp <- (ClinHxDictionary[which(ClinHxDictionary$Group == Groups[i] & tolower(ClinHxDictionary$ContainsorMatch) == 'contains'),]$Term)
+  
+  #Adding * for GLOB Style matching
+  temp <- lapply(temp, function(x) str_c(x,'*'))
+  Dic_List[[length(Dic_List)+1]] <- temp
+}
+names(Dic_List) <- Groups
+Dic_List <- Dic_List[which(lengths(Dic_List)>0)]
+Dict <- quanteda::dictionary(Dic_List)
+
+#CREATING TOKENS OF THE CLINHX
+# Keep in mind this step can take some time to run based on how big the input file is
+BloodCultTokens <- tokens(CleanedClinHx)
+
+#LOOKUP FOR 'CONTAINS' DICT
+Dict_lookup <- tokens_lookup(BloodCultTokens, dictionary = Dict, case_insensitive = TRUE, valuetype = 'glob')
+mat_lookup <- as.matrix(dfm(Dict_lookup))
+colnames(mat_lookup) <- names(Dict)
+
+
+#
+# 'Exact' Dictionary
+#
+Dic_List_Match <- list()
+for (i in 1:NumGroups){
+  temp <- (ClinHxDictionary[which(ClinHxDictionary$Group == Groups[i] & ClinHxDictionary$ContainsorMatch == 'match'),]$Term)
+  
+  #Adding * for REGEX Style matching
+  temp <- lapply(temp, function(x) str_c('^',x,'$'))
+  Dic_List_Match[[length(Dic_List_Match)+1]] <- temp
+}
+names(Dic_List_Match) <- Groups
+Dic_List_Match <- Dic_List_Match[which(lengths(Dic_List_Match)>0)]
+Dict_Match <- quanteda::dictionary(Dic_List_Match)
+
+#Since Token Seperation removes the sentence structure new tokens must be constructed
+# Keep in mind this step can take some time to run based on how big the input file is
+BloodCultTokens <-as.tokens(as.list(CleanedClinHx))
+
+#LOOKUP FOR 'Exact' Dictionary
+Dict_Match_lookup <- tokens_lookup(BloodCultTokens, dictionary = Dict_Match, case_insensitive = TRUE, valuetype = 'regex')
+mat_lookup_match <- as.matrix(dfm(Dict_Match_lookup))
+colnames(mat_lookup_match) <- names(Dic_List_Match)
+
+#Adding both dict's together
+mat_lookup <- cbind(mat_lookup,mat_lookup_match)
+
+# ALL NON IMPORTANT ROWS IDENTIFIED 
+
+#NONE PROVIDED
+None_Provided <- rep(0, nrow(BloodCult))
+None_Provided[which(is.na(CleanedClinHx) &  rowSums(mat_lookup) == 0)] <- 1
+
+#PUNCTUATIONS/SingleCharacter
+SingleCharacter.or.Punctuation <- rep(0, nrow(BloodCult))
+SingleCharacter.or.Punctuation[which(!grepl("\\w", CleanedClinHx) & !is.na(CleanedClinHx )&  rowSums(mat_lookup) == 0)] <- 1
+SingleCharacter.or.Punctuation[which(nchar(gsub(' ' ,'', CleanedClinHx)) == 1 &  rowSums(mat_lookup) == 0)] <- 1
+
+
+
+#ADDING ALL IDENTIFIED WORDS
+Final_Mat <- cbind(SingleCharacter.or.Punctuation, mat_lookup)
+Final_Mat <- cbind(None_Provided, Final_Mat)
+
+
+#Preparing Output Matrix
+Character_Count <- nchar(BloodCult$ClinHx)
+Syllable_Count <- nsyllable(BloodCult$ClinHx)
+Word_Count <- str_count(BloodCult$ClinHx, "\\S+")
+Cleaned_Clinhx <- CleanedClinHx
+BloodCult2 <- cbind(BloodCult, Cleaned_Clinhx)
+BloodCult2 <- cbind(BloodCult2, Character_Count)
+BloodCult2 <- cbind(BloodCult2, Syllable_Count)
+BloodCult2 <- cbind(BloodCult2, Word_Count)
+
+
+#Assessment
+Number_of_Matches <- rowSums(Final_Mat)
+
+categoryDF <- unique(ClinHxDictionary[c('Group','Category')])
+category <- rep(NA, length(BloodCult))
+
+# Each Group must have a unique category. If this is not the case the assesment category will be filled with NA values.
+if (nrow(categoryDF) == length(Groups)){
+  temp <- Final_Mat
+  #temp <- cbind(temp, Number_of_Matches
+  category[which(Number_of_Matches == 0)] <- 'Ungrouped'
+  uninform_cols <- c(which(trimws(tolower(removePunctuation(categoryDF$Category)))== 'uninformative')+2, c(1,2))
+  category[which(rowSums(temp[,uninform_cols])!=0)] <- 'Uninformative'
+  category[is.na(category)] <- 'Informative'
+}
+
+Assessment <- category
+
+BloodCult2 <- cbind(BloodCult2, Assessment)
+BloodCult2 <- cbind(BloodCult2,Number_of_Matches)
+
+#Outputing
+Output_Mat <- cbind(BloodCult2,Final_Mat)
+#Number_of_Matches <- rowSums(Final_Mat)
+#Output_Mat <- cbind(Output_Mat, Number_of_Matches)
+write.csv(Output_Mat, output_file, row.names = FALSE)
+
+print('COMPLETE')
+```

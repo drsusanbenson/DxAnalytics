@@ -1,0 +1,164 @@
+﻿Term,ContainsorMatch,Group,Category 
+neutropaenia,Contains,immunosuppression,risk factor 
+ neutropen,Contains,immunosuppression,risk factor 
+ oncology,Contains,immunosuppression,risk factor 
+ chemo,Contains,immunosuppression,risk factor 
+ cancer,Contains,immunosuppression,risk factor 
+ AML,Contains,immunosuppression,risk factor 
+ CLL,Contains,immunosuppression,risk factor 
+ CML,Contains,immunosuppression,risk factor 
+ ALL,Contains,immunosuppression,risk factor 
+ lymphoma,Contains,immunosuppression,risk factor 
+ myeloma,Contains,immunosuppression,risk factor 
+ aplastic,Contains,immunosuppression,risk factor 
+transplant,Contains,immunosuppression,risk factor 
+ immunosup,Contains,immunosuppression,risk factor 
+ immunocomp,Contains,immunosuppression,risk factor 
+ tx,Contains,immunosuppression,risk factor 
+ ritux,Contains,immunosuppression,risk factor 
+cough,Contains,respiratory,infection site
+ pneumonia,Contains,respiratory,infection site
+ resp,Contains,respiratory,infection site
+ LRTI,Contains,respiratory,infection site
+ sob,Contains,respiratory,infection site
+ dyspnea,Contains,respiratory,infection site
+ chest,Contains,respiratory,infection site
+ pneumo,Contains,respiratory,infection site
+ COPD,Contains,respiratory,infection site
+pneumoniae,Contains,respiratory,infection site
+bronchiectasis,Contains,respiratory,infection site
+bronch,Contains,respiratory,infection site
+respiratory,Contains,respiratory,infection site
+lung,Contains,respiratory,infection site
+bronchi,Contains,respiratory,infection site
+abdo,Contains,intraabdominal hepatic gastrointestinal,infection site
+ diarrhoea,Contains,intraabdominal hepatic gastrointestinal,infection site
+ vomit,Contains,intraabdominal hepatic gastrointestinal,infection site
+ gastro,Contains,intraabdominal hepatic gastrointestinal,infection site
+ stool,Contains,intraabdominal hepatic gastrointestinal,infection site
+ append,Contains,intraabdominal hepatic gastrointestinal,infection site
+ peritonitis,Contains,intraabdominal hepatic gastrointestinal,infection site
+ pancreatitis,Contains,intraabdominal hepatic gastrointestinal,infection site
+vomiting ,Contains,intraabdominal hepatic gastrointestinal,infection site
+jaundice,Contains,intraabdominal hepatic gastrointestinal,infection site
+ascites,Contains,intraabdominal hepatic gastrointestinal,infection site
+abscess,Contains,skin and soft tissue or rash,infection site
+ wound,Contains,skin and soft tissue or rash,infection site
+  cellul,Contains,skin and soft tissue or rash,infection site
+ wound,Contains,skin and soft tissue or rash,infection site
+laceration,Contains,skin and soft tissue or rash,infection site
+rash,Contains,skin and soft tissue or rash,infection site
+jaundice,Contains,skin and soft tissue or rash,infection site
+urinary,Contains,urogenital,infection site
+ urine,Contains,urogenital,infection site
+ uro,Contains,urogenital,infection site
+ UTI,Contains,urogenital,infection site
+ pyelo,Contains,urogenital,infection site
+ dysuria,Contains,urogenital,infection site
+pyelonephritis,Contains,urogenital,infection site
+staph,Contains,microorganism,microorganism or antibiotic
+ strep,Contains,microorganism,microorganism or antibiotic
+ MSSA,Contains,microorganism,microorganism or antibiotic
+ MRSA,Contains,microorganism,microorganism or antibiotic
+ e.col,Contains,microorganism,microorganism or antibiotic
+ gram,Contains,microorganism,microorganism or antibiotic
+ pseud,Contains,microorganism,microorganism or antibiotic
+ enterobacter,Contains,microorganism,microorganism or antibiotic
+ kleb,Contains,microorganism,microorganism or antibiotic
+ bacteraemia,Contains,microorganism,microorganism or antibiotic
+bacterial,Contains,microorganism,microorganism or antibiotic
+"	bacteraemic",Contains,microorganism,microorganism or antibiotic
+confus,Contains,altered level of consciousness,infection site
+ gcs,Contains,altered level of consciousness,infection site
+ seizure,Contains,altered level of consciousness,infection site
+ convul,Contains,altered level of consciousness,infection site
+ delirium,Contains,altered level of consciousness,infection site
+ LOC,Contains,altered level of consciousness,infection site
+confused,Contains,altered level of consciousness,infection site
+consciousness,Contains,altered level of consciousness,infection site
+conscious,Contains,altered level of consciousness,infection site
+confusion,Contains,altered level of consciousness,infection site
+ictal,Contains,altered level of consciousness,infection site
+osteomyel,Contains,bone and joint,infection site
+ arthritis,Contains,bone and joint,infection site
+ back pain,Contains,bone and joint,infection site
+ joint,Contains,bone and joint,infection site
+ OM,Contains,bone and joint,infection site
+ arthr,Contains,bone and joint,infection site
+ESRF,Contains,renal disease,risk factor 
+ dialysis,Contains,renal disease,risk factor 
+renal ,Contains,renal disease,risk factor 
+haemodialysis,Contains,renal disease,risk factor 
+nephrotic,Contains,renal disease,risk factor 
+nephritic,Contains,renal disease,risk factor 
+CRF,Contains,renal disease,risk factor 
+post op,Contains,post procedure or event complications,risk factor 
+postop,Contains,post procedure or event complications,risk factor 
+post,Contains,post procedure or event complications,risk factor 
+post operation,Contains,post procedure or event complications,risk factor 
+endocarditis,Contains,endocarditis and other cardiac valve disease,infection site
+ valve,Contains,endocarditis and other cardiac valve disease,infection site
+ AVR,Contains,endocarditis and other cardiac valve disease,infection site
+ MVR,Contains,endocarditis and other cardiac valve disease,infection site
+ ie,Contains,endocarditis and other cardiac valve disease,infection site
+line,Contains,"IV lines, devices and IVDU",infection site
+ PICC,Contains,"IV lines, devices and IVDU",infection site
+ port,Contains,"IV lines, devices and IVDU",infection site
+ hickman,Contains,"IV lines, devices and IVDU",infection site
+ivdu,Contains,"IV lines, devices and IVDU",infection site
+travel,Contains,travel related,risk factor 
+return,Contains,travel related,risk factor 
+travel related,Contains,travel related,risk factor 
+overseas,Contains,travel related,risk factor 
+abroad,Contains,travel related,risk factor 
+antibiotic,Contains,antibiotic,microorganism or antibiotic
+ vanc,Contains,antibiotic,microorganism or antibiotic
+ vanco,Contains,antibiotic,microorganism or antibiotic
+ gent,Contains,antibiotic,microorganism or antibiotic
+ taz,Contains,antibiotic,microorganism or antibiotic
+ cipro,Contains,antibiotic,microorganism or antibiotic
+ mero,Contains,antibiotic,microorganism or antibiotic
+meningitis,Contains,meningitis or encephalitis,infection site
+ encephalitis,Contains,meningitis or encephalitis,infection site
+ photophobia,Contains,meningitis or encephalitis,infection site
+DKA,Contains,diabetes,risk factor 
+ ketoacid,Contains,diabetes,risk factor 
+diabetic,Contains,diabetes,risk factor 
+neonate,Contains,"neonate, preterm",risk factor 
+preterm,Contains,"neonate, preterm",risk factor 
+unwell,Match,unwell without other information,uninformative
+ill,Match,unwell without other information,uninformative
+Generally Unwell,Match,unwell without other information,uninformative
+sick,Match,unwell without other information,uninformative
+PUO,Match,"source unknown or ""puo""",uninformative
+P.U.O,Match,"source unknown or ""puo""",uninformative
+screen,Match,"""routine"" or ""screening"" ",uninformative
+routine,Match,"""routine"" or ""screening"" ",uninformative
+blood culture,Match,"""routine"" or ""screening"" ",uninformative
+order,Match,"""routine"" or ""screening"" ",uninformative
+notes,Match,refers to information not supplied with request,uninformative
+clinical,Match,refers to information not supplied with request,uninformative
+image,Match,refers to information not supplied with request,uninformative
+form,Match,refers to information not supplied with request,uninformative
+request,Match,refers to information not supplied with request,uninformative
+sepsis,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+ fever,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+ septic,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+ To spike,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+ temp,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+ temp spike,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+ temperature spike,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+ t spike,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+ tspike,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+temperature,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+spike,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+febrile,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+pyrexia,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+pyrexial,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+pyrexic,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+fevers,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+rigor,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+rigour,Match,"sepsis, fever,  temp, blood culture without other information",uninformative
+Na,Match,"nil or NA or ""no clinical details""",uninformative
+NaN,Match,"nil or NA or ""no clinical details""",uninformative
+nil,Match,"nil or NA or ""no clinical details""",uninformative
